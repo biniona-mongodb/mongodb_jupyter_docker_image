@@ -1,6 +1,6 @@
 # Atlas + Jupyter Skunkworks
 
-This is part of a project trying to serve Jupyter notebooks on Atlas.
+This is part of a project trying to serve preconfigured Jupyter notebooks on Atlas.
 
 Navigate into your clone of this repository and run:
 
