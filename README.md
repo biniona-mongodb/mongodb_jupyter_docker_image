@@ -1,5 +1,7 @@
 # Atlas + Jupyter Skunkworks POC
 
+![atlas jupyter silly logo](https://github.com/biniona-mongodb/mongodb_jupyter_docker_image/blob/master/atlas_jupy.png)
+
 This is part of a project trying to serve preconfigured Jupyter notebooks on Atlas.
 
 Navigate into your clone of this repository and run:
