@@ -2,6 +2,8 @@ FROM python:3.8-slim-buster
 WORKDIR /app
 COPY requirements.txt requirements.txt
 RUN pip3 install -r requirements.txt
+COPY atlas_jupyter atlas_jupyter
+RUN pip3 install -e atlas_jupyter/ 
 COPY . .
 EXPOSE 8888
 #extremely insecure, only for proof of concept 

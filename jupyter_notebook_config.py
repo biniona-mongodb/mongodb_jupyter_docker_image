@@ -1,16 +1,10 @@
 import os
 import pymongo
 import json
-
-client = pymongo.MongoClient(os.getenv("CONNECTION_URI"))
-db_str = os.getenv("DATABASE")
-# hardcoded name of notebooks collection
-col_str = "notebooks"
-db = client[db_str]
-col = db[col_str]
+import atlas_jupyter as a
 
 #populate the file system on start with contents of mongocollection
-for document in col.find():
+for document in a.notebook_col.find():
     file_name = document["_id"]
     print(file_name) # iterate the cursor
     with open(file_name, 'w') as fp:
@@ -29,6 +23,6 @@ def save_to_mongo (model, **kwargs):
     id_dict = {"_id": kwargs["path"]}
     mongo_model = {"notebook" : model}
     mongo_model.update(id_dict)
-    col.replace_one(filter = id_dict, replacement = mongo_model, upsert = True)
+    a.notebook_col.replace_one(filter = id_dict, replacement = mongo_model, upsert = True)
 
 c.FileContentsManager.pre_save_hook = save_to_mongo
