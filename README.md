@@ -1,4 +1,4 @@
-# Atlas + Jupyter Skunkworks
+# Atlas + Jupyter Skunkworks POC
 
 This is part of a project trying to serve preconfigured Jupyter notebooks on Atlas.
 
@@ -16,3 +16,5 @@ If the container spins up, navigate to [the load db
 file](http://localhost:8888/lab/tree/load_db.ipynb) (the link will not work
 unless container is running), and run the first cell to have a notebook with a
 connection to your cluster. 
+
+# This is super insecure and is just a proof of concept!
