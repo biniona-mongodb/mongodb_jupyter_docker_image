@@ -1,4 +1,8 @@
-FROM python:3.8-slim-buster
+FROM nikolaik/python-nodejs:python3.8-nodejs15-alpine
+# this solves a problem building wheels for jupyter lab dependencies, this could probably be trimmed down
+# https://www.gitmemory.com/issue/zeromq/pyzmq/1510/783219808
+RUN apk update \
+    && apk add gcc g++ musl-dev python3-dev py3-setuptools libffi libffi-dev openssl-dev git zeromq-dev
 WORKDIR /app
 COPY requirements.txt requirements.txt
 RUN pip3 install -r requirements.txt
@@ -8,5 +12,6 @@ COPY . .
 # delete everything that doesn't have a .py file extension
 RUN find . -type f ! -name '*.*py*' -delete
 EXPOSE 8888
-#extremely insecure, only for proof of concept 
+#extremely insecure, only for proof of concept
+RUN jupyter labextension install verdant-history
 CMD ["jupyter", "lab", "--ip='0.0.0.0'", "--port=8888", "--no-browser", "--allow-root", "--NotebookApp.token=''", "--NotebookApp.password=''"]
