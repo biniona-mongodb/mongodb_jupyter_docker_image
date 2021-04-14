@@ -2,7 +2,7 @@
 
 Pawel and Alek's skunkworks project.
 
-![atlas jupyter silly logo](https://github.com/biniona-mongodb/mongodb_jupyter_docker_image/blob/master/atlas_jupyter_cc0.png)
+![atlas jupyter silly logo](https://github.com/biniona-mongodb/mongodb_jupyter_docker_image/blob/master/logo/atlas_jupyter_cc0_background.png)
 
 This is part of a project trying to serve preconfigured Jupyter notebooks on Atlas.
 
