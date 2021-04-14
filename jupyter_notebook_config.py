@@ -26,3 +26,10 @@ def save_to_mongo (model, **kwargs):
     a.notebook_col.replace_one(filter = id_dict, replacement = mongo_model, upsert = True)
 
 c.FileContentsManager.pre_save_hook = save_to_mongo
+
+c.NotebookApp.tornado_settings = {
+    'headers': {
+        'Content-Security-Policy':
+        "frame-ancestors 'self' http://localhost:8080"
+    }
+}
