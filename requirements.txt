@@ -1,3 +1,14 @@
 jupyterlab
 pymongo
 dnspython
+tensorflow
+numpy
+matplotlib
+numpy
+pandas
+scikit-learn
+seaborn
+watermark
+tqdm
+joblib
+tpot
