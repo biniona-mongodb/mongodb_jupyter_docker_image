@@ -27,8 +27,10 @@ this repository:
 
 `docker build --tag jupyter_skunk .`
 
-To use this repository, set the `$MY_CONNECTION_URI`, `$MY_DB`, and `$MY_COL`
-environment variables, download Docker, and run:
+To start run a docker container from the `jupyter_skunk` image, run the
+following command. This will map the `8888` port from the container to the
+`8888` port on the host machine, and pass in the your MongoDB connection
+information as environment variables:
 
 `docker run --env CONNECTION_URI=$MY_CONNECTION_URI --env DATABASE=$MY_DB --env
 COLLECTION=$MY_COL  --publish 8888:8888 jupyter_skunk`
