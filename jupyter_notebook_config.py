@@ -10,7 +10,7 @@ for document in a.notebook_col.find():
     with open(file_name, 'w') as fp:
         json.dump(document["notebook"]["content"], fp, indent = 1)
         if document["notebook"].get("history"):
-            with open(document["notebook"]["history"]["path"], 'w'):
+            with open(document["notebook"]["history"]["path"], 'w') as hfp:
                 json.dump(document["notebook"]["history"]["history"], hfp, indent = 1)
 
 def save_to_mongo (model, **kwargs):
