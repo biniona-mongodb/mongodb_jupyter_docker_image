@@ -25,7 +25,7 @@ RUN mkdir -p "/usr/local/share/jupyter/lab/settings"
 COPY overrides.json /usr/local/share/jupyter/lab/settings/overrides.json
 RUN mkdir -p "/root/.jupyter/"
 COPY jupyter_notebook_config.py /root/.jupyter/jupyter_notebook_config.py
-COPY images sample_notebook.ipynb ./
+COPY images images
 # delete everything that doesn't have a file extension that contains py in current directory
 RUN find . -maxdepth 1 -type f ! -name '*.*py*' -delete
 EXPOSE 8888
