@@ -18,7 +18,8 @@ COPY atlas_jupyter atlas_jupyter
 RUN pip3 install -e atlas_jupyter/
 RUN jupyter labextension install verdant-history
 # this installs the mongoDB-esque theme for the notebooks
-RUN jupyter labextension install git+https://github.com/biniona-mongodb/theme-darcula
+COPY theme-mongodb theme-mongodb
+RUN jupyter labextension install theme-mongodb
 RUN mkdir -p "/usr/local/share/jupyter/lab/settings"
 # this makes the theme load as defualt
 COPY overrides.json /usr/local/share/jupyter/lab/settings/overrides.json
