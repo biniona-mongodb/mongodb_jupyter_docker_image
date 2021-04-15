@@ -14,16 +14,18 @@ RUN pip install joblib
 RUN pip install tpot
 COPY requirements.txt requirements.txt
 RUN pip3 install -r requirements.txt
-COPY atlas_jupyter atlas_jupyter
-RUN pip3 install -e atlas_jupyter/
+COPY atlas_jupyter /atlas_jupyter
+RUN pip3 install -e /atlas_jupyter
 RUN jupyter labextension install verdant-history
 # this installs the mongoDB-esque theme for the notebooks
-COPY theme-mongodb theme-mongodb
-RUN jupyter labextension install theme-mongodb
+COPY theme-mongodb /theme-mongodb
+RUN jupyter labextension install /theme-mongodb
 RUN mkdir -p "/usr/local/share/jupyter/lab/settings"
 # this makes the theme load as defualt
 COPY overrides.json /usr/local/share/jupyter/lab/settings/overrides.json
-COPY . .
+RUN mkdir -p "/root/.jupyter/"
+COPY jupyter_notebook_config.py /root/.jupyter/jupyter_notebook_config.py
+COPY images sample_notebook.ipynb ./
 # delete everything that doesn't have a file extension that contains py in current directory
 RUN find . -maxdepth 1 -type f ! -name '*.*py*' -delete
 EXPOSE 8888
