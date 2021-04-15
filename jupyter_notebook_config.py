@@ -6,12 +6,20 @@ import atlas_jupyter as a
 #populate the file system on start with contents of mongocollection
 for document in a.notebook_col.find():
     file_name = document["_id"]
-    print(file_name) # iterate the cursor
+    _, file_extension = os.path.splitext('/path/to/somefile.ext')
     with open(file_name, 'w') as fp:
         json.dump(document["notebook"]["content"], fp, indent = 1)
+        if document["notebook"].get("history"):
+            with open(document["notebook"]["history"]["path"], 'w'):
+                json.dump(document["notebook"]["history"]["history"], hfp, indent = 1)
 
 def save_to_mongo (model, **kwargs):
-
+    file_name, extension = os.path.splitext(kwargs["path"])
+    if extension == ".ipyhistory":
+        filter_ = {"_id" : file_name+".ipynb"}
+        update = {"$set" : {"notebook.history" : {"history" : model, "path" : kwargs["path"]}}}
+        a.notebook_col.update_one(filter=filter_, update=update)
+        return
     # only run on notebooks
     if model['type'] != 'notebook':
         return
