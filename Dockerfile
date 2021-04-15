@@ -1,9 +1,17 @@
-FROM nikolaik/python-nodejs:python3.8-nodejs15-alpine
-# this solves a problem building wheels for jupyter lab dependencies, this could probably be trimmed down
-# https://www.gitmemory.com/issue/zeromq/pyzmq/1510/783219808
-RUN apk update \
-    && apk add gcc g++ musl-dev python3-dev py3-setuptools libffi libffi-dev openssl-dev git zeromq-dev
+FROM nikolaik/python-nodejs:python3.8-nodejs15
 WORKDIR /app
+# install large pip dependencies individually to better cache build
+#matplotlib install
+RUN pip install Pillow
+RUN pip install matplotlib  
+RUN pip install numpy
+RUN pip install pandas
+RUN pip install scikit-learn
+RUN pip install seaborn
+RUN pip install watermark
+RUN pip install tqdm
+RUN pip install joblib
+RUN pip install tpot
 COPY requirements.txt requirements.txt
 RUN pip3 install -r requirements.txt
 COPY atlas_jupyter atlas_jupyter
