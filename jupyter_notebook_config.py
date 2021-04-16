@@ -18,7 +18,7 @@ def save_to_mongo (model, **kwargs):
     if extension == ".ipyhistory":
         file_name = file_name.replace("/", "")
         filter_ = {"_id" : file_name+".ipynb"}
-        update = {"$set" : {"notebook.history" : {"history" : model, "path" : kwargs["path"]}}}
+        update = {"$set" : {"notebook.history" : {"history" : model["content"], "path" : kwargs["path"]}}}
         a.notebook_col.update_one(filter=filter_, update=update)
     # only run on notebooks
     if model['type'] != 'notebook':
