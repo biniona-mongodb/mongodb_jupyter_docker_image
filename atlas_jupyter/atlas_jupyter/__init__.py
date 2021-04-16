@@ -9,6 +9,7 @@ notebook_col_str = "notebooks"
 db = client[db_str]
 notebook_col = db[notebook_col_str]
 col = None
+jupyter_dir = "/app/"
 
 def set_col(new_col_str):
     col_str = new_col_str
